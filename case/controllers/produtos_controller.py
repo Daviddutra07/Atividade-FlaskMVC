@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
-from flask_login import login_required
+from flask_login import login_required,  current_user
 from models.product import Produto
 
 
@@ -15,10 +15,10 @@ def produtos():
 @login_required 
 def adicionar():
     if request.method == 'POST':
-        produto = Produto(
-            nome=request.form["nome"],
-            preco=float(request.form["preco"]),
-            descricao = request.form["descricao"])
+        produto = Produto(nome=request.form["nome"], preco=float(request.form["preco"]),
+            descricao = request.form["descricao"],
+            user_id= current_user.id)
+        
         produto.save()
         flash("Produto adicionado com sucesso!", "success")
         return redirect(url_for("produtos.produtos"))

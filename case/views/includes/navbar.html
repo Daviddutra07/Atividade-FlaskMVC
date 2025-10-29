@@ -3,7 +3,7 @@
     <div class="links">
         <a href="{{ url_for('home.index') }}"> INÍCIO</a>
         <a href="{{ url_for('produtos.produtos') }}">PRODUTOS</a>
-        <a href="{{ url_for('auth.cadastro') }}">CADASTRO</a>
+        <a href="{{ url_for('auth.register') }}">CADASTRO</a>
         {% if current_user.is_authenticated %}
             <a href="{{ url_for('auth.logout') }}">SAIR</a>
         {% endif %}

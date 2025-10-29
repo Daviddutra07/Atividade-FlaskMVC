@@ -36,3 +36,21 @@ class Produto(Base):
         produto = session.get(cls, id)  
         session.close()
         return produto
+
+    def delete(self):
+        session = obter_sessao()
+        session.delete(self)
+        session.commit()
+        session.close()
+
+    def update(self, nome=None, preco=None, descricao=None):
+        session = obter_sessao()
+        if nome is not None:
+            self.nome = nome
+        if preco is not None:
+            self.preco = preco
+        if descricao is not None:
+            self.descricao = descricao
+
+        session.commit() 
+        return self

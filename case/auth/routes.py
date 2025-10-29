@@ -17,7 +17,7 @@ def register():
 
         user = User(nome = nome, email=email, password=senha_hash)
         sucesso = user.save()
-
+    
         if sucesso:
             login_user(user)
             return redirect(url_for('home.index'))

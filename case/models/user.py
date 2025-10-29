@@ -9,6 +9,7 @@ class User(Base, UserMixin):
     __tablename__ = 'tb_usuarios'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    nome: Mapped[str] = mapped_column(String(80), nullable=True)
     email: Mapped[str] = mapped_column(String(80), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(200), nullable=False)
     produtos: Mapped[list["Produto"]] = relationship(back_populates='user', cascade='all, delete-orphan') # type: ignore
