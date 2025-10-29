@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user
 from models.user import User
-from case.database import obter_sessao
+from database import obter_sessao
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth', template_folder='views/auth')
 

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block css %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editar_produto.css') }}">
+{% endblock %}
+
+{% block titulo %} ConstruMais+ - Editar Produto {% endblock %}
+
+{% block conteudo %}
+<main>
+    {% set _ = get_flashed_messages() %} <!-- Gambiarra para parar de dar erro nas mensagens flash -->
+
+    <h1>Editar Material</h1>
+
+    <form action="{{ url_for('editar', item=produto.id) }}" method="POST">
+        <label for="nome">Nome do Material:</label>
+        <input type="text" id="nome" name="nome" value="{{ produto.nome }}" required>
+
+        <label for="preco">Preço (R$):</label>
+        <input type="number" id="preco" name="preco" step="0.01" value="{{ produto.preco }}" required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" rows="3">{{ produto.descricao }}</textarea>
+
+        <button type="submit" class="btn">Salvar Alterações</button>
+    </form>
+
+    <a href="{{ url_for('produtos') }}" class="btn">Voltar</a>
+</main>
+{% endblock %}

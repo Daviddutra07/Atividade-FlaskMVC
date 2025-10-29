@@ -1,0 +1,11 @@
+<nav id="navbar">
+    <h1> ConstruMais+</h1>
+    <div class="links">
+        <a href="{{ url_for('home') }}"> INÍCIO</a>
+        <a href="{{ url_for('produtos') }}">PRODUTOS</a>
+        <a href="{{ url_for('cadastro') }}">CADASTRO</a>
+        {% if 'logged_in' in session %}
+            <a href="{{ url_for('logout') }}">SAIR</a>
+        {% endif %}
+    </div>
+</nav>

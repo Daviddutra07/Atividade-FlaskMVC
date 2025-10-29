@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block css %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+
+{% block conteudo %}
+    <h1>Perfil do Usuário</h1>
+    <div class="card">
+        <h2>Bem-vindo(a), {{ user.username }}!</h2>
+        <p><strong>ID:</strong> {{ user.id }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+{% endblock %}

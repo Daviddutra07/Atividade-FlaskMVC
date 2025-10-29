@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    FDG Burguer - Login
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loginregister.css') }}">
+{% endblock %}
+
+{% block conteudo %}
+
+<main> 
+
+    {% set _ = get_flashed_messages() %} <!-- Gambiarra para parar de dar erro nas mensagens flash -->
+
+    <div class="loginregister">
+        <span class="img">
+            <img src="../static/images/ConstruMais.png"> 
+        </span>
+
+        <span class="forms">
+            <form action="{{url_for('login')}}" method="post">
+                <h1> Login </h1>
+                <p> Acesse a ConstruMais+! </p>
+                {% include 'mensagens.html' %}
+                <label for="email"> Digite seu email: </label>
+                <input type="text" name="email" id="email">
+                <label for="senha"> Digite sua senha: </label>
+                <input type="password" name="senha" id="senha">
+                <button> Entrar </button>
+            </form>
+        </span>    
+    </div>
+</main>
+
+{% endblock %}

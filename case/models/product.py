@@ -1,7 +1,7 @@
 from . import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, Float
-from case.database import obter_sessao
+from database import obter_sessao
 
 class Produto(Base):
     __tablename__ = 'tb_produtos'
