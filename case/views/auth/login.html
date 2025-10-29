@@ -17,11 +17,11 @@
 
     <div class="loginregister">
         <span class="img">
-            <img src="../static/images/ConstruMais.png"> 
+            <img src="{{ url_for('static', filename='images/ConstruMais.png') }}"> 
         </span>
 
         <span class="forms">
-            <form action="{{url_for('login')}}" method="post">
+            <form action="{{url_for('auth.login')}}" method="post">
                 <h1> Login </h1>
                 <p> Acesse a ConstruMais+! </p>
                 {% include 'mensagens.html' %}

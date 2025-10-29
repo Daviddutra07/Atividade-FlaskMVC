@@ -33,6 +33,6 @@ class Produto(Base):
     @classmethod
     def get(cls, id):
         session = obter_sessao()
-        Produto = session.get(cls, id)  
+        produto = session.get(cls, id)  
         session.close()
-        return Produto
+        return produto

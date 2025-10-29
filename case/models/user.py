@@ -24,19 +24,17 @@ class User(Base, UserMixin):
         session.close()
         return usuarios
     
-    def save(self): 
+    
+    def save(self):
         session = obter_sessao()
     
-def save(self):
-    session = obter_sessao()
-
-    existente = session.query(User).filter_by(email=self.email).first()
-    if existente:
+        existente = session.query(User).filter_by(email=self.email).first()
+        if existente:
+            session.close()
+            return None  # Já existe
+    
+        # Cria novo usuário
+        session.add(self)
+        session.commit()
         session.close()
-        return None  # Já existe
-
-    # Cria novo usuário
-    session.add(self)
-    session.commit()
-    session.close()
-    return True
+        return True

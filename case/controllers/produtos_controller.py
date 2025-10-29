@@ -3,7 +3,7 @@ from flask_login import login_required
 from models.product import Produto
 
 
-produto_bp = Blueprint('produto', __name__, url_prefix='/produtos', template_folder='views/produtos')
+produto_bp = Blueprint('produtos', __name__, url_prefix='/produtos', template_folder='views/produtos')
 
 @produto_bp.route("/")
 @login_required 
@@ -21,7 +21,7 @@ def adicionar():
             descricao = request.form["descricao"])
         produto.save()
         flash("Produto adicionado com sucesso!", "success")
-        return redirect(url_for("produtos"))
+        return redirect(url_for("produtos.produtos"))
     return render_template('produtos/adicionar_produto.html')
 
 @produto_bp.route("/remover/<int:item>", methods=["POST"])
@@ -30,7 +30,7 @@ def remover(item):
     p = Produto.get(item)
     if p: p.delete()
     flash("Produto removido!", "success")
-    return redirect(url_for("produtos"))
+    return redirect(url_for("produtos.produtos"))
 
 @produto_bp.route("/editar/<int:item>", methods=["GET", "POST"])
 @login_required 
@@ -38,11 +38,11 @@ def editar(item):
     p = Produto.get(item)
     if not p:
         flash("Produto não encontrado!", "error")
-        return redirect(url_for("produtos"))
+        return redirect(url_for("produtos.produtos"))
 
     if request.method == "POST":
         p.update(nome=request.form.get("nome"),preco=float(request.form.get("preco", 0)),descricao=request.form.get("descricao"))
         flash("Produto editado!", "success")
-        return redirect(url_for("produtos"))
+        return redirect(url_for("produtos.produtos"))
 
     return render_template('produtos/editar_produto.html', produto=p)

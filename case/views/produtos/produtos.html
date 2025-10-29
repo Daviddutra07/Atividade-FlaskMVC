@@ -11,8 +11,8 @@
     <h1>Lista de Materiais - ConstruMais+</h1>
     <p>Gerencie os materiais e produtos disponíveis para construção.</p>
 
-    <a class="btn" href="{{ url_for('adicionar') }}">Adicionar Material</a> |
-    <a class="btn" href="{{ url_for('logout') }}">Sair</a>
+    <a class="btn" href="{{ url_for('produtos.adicionar') }}">Adicionar Material</a> |
+    <a class="btn" href="{{ url_for('auth.logout') }}">Sair</a>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -42,10 +42,10 @@
                 <td>{{ produto.preco }}</td>
                 <td>{{ produto.descricao }}</td>
                 <td>
-                    <form action="{{ url_for('remover', item=produto.id) }}" method="POST" style="display:inline;">
+                    <form action="{{ url_for('produtos.remover', item=produto.id) }}" method="POST" style="display:inline;">
                         <button type="submit" class="btn-small">Remover</button>
                     </form>
-                    <a class="btn-small" href="{{ url_for('editar', item=produto.id) }}">Editar</a>
+                    <a class="btn-small" href="{{ url_for('produtos.editar', item=produto.id) }}">Editar</a>
                 </td>
             </tr>
             {% endfor %}

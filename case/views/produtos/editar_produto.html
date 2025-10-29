@@ -12,7 +12,7 @@
 
     <h1>Editar Material</h1>
 
-    <form action="{{ url_for('editar', item=produto.id) }}" method="POST">
+    <form action="{{ url_for('produtos.editar', item=produto.id) }}" method="POST">
         <label for="nome">Nome do Material:</label>
         <input type="text" id="nome" name="nome" value="{{ produto.nome }}" required>
 
@@ -25,6 +25,6 @@
         <button type="submit" class="btn">Salvar Alterações</button>
     </form>
 
-    <a href="{{ url_for('produtos') }}" class="btn">Voltar</a>
+    <a href="{{ url_for('produtos.produtos') }}" class="btn">Voltar</a>
 </main>
 {% endblock %}

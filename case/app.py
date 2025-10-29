@@ -8,11 +8,8 @@ from controllers.produtos_controller import produto_bp
 from models import Base
 from database import engine
 
-app = Flask(__name__, template_folder='views')
-
-
 def create_app(config_class=Config):
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder='views')
     app.config.from_object(config_class)
 
     init_extensions(app)
@@ -20,9 +17,6 @@ def create_app(config_class=Config):
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(produto_bp)
-
-    from auth.utils import load_user
-    login_manager.user_loader(load_user) 
     
     with app.app_context():
         Base.metadata.create_all(bind=engine)

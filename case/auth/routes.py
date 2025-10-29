@@ -9,20 +9,21 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth', template_folder='views
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == "POST":
+        nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
         senha_hash = generate_password_hash(senha)
 
 
-        user = User(email=email, password=senha_hash)
+        user = User(nome = nome, email=email, password=senha_hash)
         sucesso = user.save()
 
         if sucesso:
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('home.index'))
         else:
             flash("E-mail já cadastrado.", "error")
-            return redirect(url_for('register'))
+            return redirect(url_for('auth.register'))
 
     return render_template('auth/register.html')
 
@@ -38,14 +39,13 @@ def login():
 
         if user and check_password_hash(user.password, senha):
             login_user(user)
-            return redirect(url_for('cardapio'))
+            return redirect(url_for('produtos.produtos'))
         else:
             flash("Usuário ou senha incorretos. Tente novamente.", "error")
-            return redirect(url_for('login'))
-
-    return render_template('login.html')
+            return redirect(url_for('auth.login'))
+    return render_template('auth/login.html')
 
 @auth_bp.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('home.index'))
